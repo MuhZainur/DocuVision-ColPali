@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docuvision-colpali"
+version = "0.1.0"
+description = "Enterprise Multimodal Visual Document Intelligence using ColPali Late Interaction"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Muhammad Zainur" }
+]
+dependencies = [
+    "torch>=2.2.0",
+    "torchvision>=0.17.0",
+    "transformers>=4.45.0",
+    "accelerate>=0.30.0",
+    "byaldi>=0.0.5",
+    "pymupdf>=1.24.0",
+    "pillow>=10.2.0",
+    "opencv-python-headless>=4.9.0",
+    "fastapi>=0.111.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic>=2.7.0",
+    "streamlit>=1.35.0",
+    "python-dotenv>=1.0.1",
+    "qdrant-client>=1.9.0",
+    "scikit-learn>=1.4.0",
+    "vidore-benchmark>=4.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.2.0",
+    "pytest-asyncio>=0.23.0",
+    "ruff>=0.4.0",
+    "mypy>=1.10.0",
+    "httpx>=0.27.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
