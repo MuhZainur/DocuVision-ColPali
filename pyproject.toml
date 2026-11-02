@@ -27,7 +27,7 @@ dependencies = [
     "python-dotenv>=1.0.1",
     "qdrant-client>=1.9.0",
     "scikit-learn>=1.4.0",
-    "vidore-benchmark>=4.0.0",
+    "google-genai>=0.1.1",
 ]
 
 [project.optional-dependencies]
