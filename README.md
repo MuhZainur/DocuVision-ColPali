@@ -48,12 +48,46 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 # 3. Install Dependencies
 uv pip install -e ".[dev]"
 
-# 4. Start the FastAPI Service
+# 4. Run Test Suite (11/11 Passing)
+pytest tests/ -v
+
+# 5. Start the FastAPI Service
 uvicorn src.api.main:app --reload --port 8000
 
-# 5. Launch the Streamlit Interactive Workspace
+# 6. Launch the Streamlit Interactive Workspace
 streamlit run src/ui/app.py
 ```
+
+---
+
+## 🧪 Live Verification & Demonstration Scripts
+
+The repository includes end-to-end verification scripts covering standard enterprise documents, real-world academic papers, and zero-text scanned bitmaps:
+
+- **End-to-End Enterprise Financial Demo**:
+  ```bash
+  python scripts/test_e2e_pipeline.py
+  ```
+  *Rasterizes a 3-page financial report, indexes multi-vector patches, extracts Net Income ($385M) and Cash ($450M), and verifies Refusal Logic on hallucinated queries.*
+
+- **Real-World 12-Page Academic Paper (Springer 2026)**:
+  ```bash
+  python scripts/test_academic_paper.py
+  ```
+  *Tests dense 2-column layout, CNN/Attention architecture diagrams, and experimental ablation tables (RTNet: 58.0 mIoU @ 40.2 FPS).*
+
+- **Pure Scanned / Image-Only PDF (Zero Text Layer)**:
+  ```bash
+  python scripts/test_scanned_pdf.py
+  ```
+  *Demonstrates native VLM visual transcription and grounding on a 100% bitmap Air Waybill without external Tesseract binaries.*
+
+---
+
+## 🗺️ Codebase Knowledge Graph (Graphify)
+The architecture and module interactions are mapped as a queryable knowledge graph:
+- **Interactive Visual Graph:** [`graphify-out/graph.html`](graphify-out/graph.html)
+- **Architecture Report:** [`graphify-out/GRAPH_REPORT.md`](graphify-out/GRAPH_REPORT.md) (164 nodes, 309 edges, 16 communities)
 
 ---
 
@@ -63,5 +97,6 @@ streamlit run src/ui/app.py
 - [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md): 6-phase milestone implementation roadmap.
 - [VLM_LATE_INTERACTION_THEORY.md](VLM_LATE_INTERACTION_THEORY.md): Deep-dive into Late Interaction vs Dense Bi-Encoders.
 - [BENCHMARK_AND_EVALUATION.md](BENCHMARK_AND_EVALUATION.md): ViDoRe benchmark comparison and Ragas-Vision metrics.
+- [reports/VIDORE_BENCHMARK_REPORT.md](reports/VIDORE_BENCHMARK_REPORT.md): Quantitative benchmark audit (+34.2% NDCG@5 vs Text-RAG).
 - [DECISIONS.md](DECISIONS.md): Architectural Decision Records (ADRs).
-- [TASKS.md](TASKS.md): Live task backlog and implementation tracker.
+- [TASKS.md](TASKS.md): Live task backlog and implementation tracker (10/10 Completed).
