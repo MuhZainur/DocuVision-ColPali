@@ -36,7 +36,15 @@ class VLMSynthesizer:
         model_name: str = "gemini-2.5-flash",
         min_retrieval_confidence: float = 0.15,
     ) -> None:
-        self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+        secret_key = None
+        try:
+            import streamlit as st
+            if hasattr(st, "secrets"):
+                secret_key = st.secrets.get("GEMINI_API_KEY") or st.secrets.get("GOOGLE_API_KEY")
+        except Exception:
+            pass
+
+        self.api_key = api_key or os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY") or secret_key
         self.model_name = model_name
         self.min_retrieval_confidence = min_retrieval_confidence
         self._client: Any = None

@@ -65,6 +65,33 @@ with st.sidebar:
     st.subheader("Document Index Status")
     st.write(f"**Total Indexed Pages:** `{len(indexer.pages)}`")
 
+    demo_btn = st.button("📄 Load Demo Financial Report", use_container_width=True, help="Load built-in 3-page ACME FY2024 Financial Report")
+    if demo_btn:
+        from scripts.generate_sample_pdf import create_sample_financial_pdf
+        sample_path = create_sample_financial_pdf()
+        with open(sample_path, "rb") as f:
+            demo_bytes = f.read()
+        with st.spinner("Indexing demo financial report..."):
+            doc_id, pages_meta, images = rasterizer.rasterize(demo_bytes, dpi=dpi_choice)
+            for meta, img in zip(pages_meta, images):
+                indexer.index_page(
+                    doc_id=doc_id,
+                    page_idx=meta.page_idx,
+                    image=img,
+                    image_path=meta.image_path,
+                    width=meta.width,
+                    height=meta.height,
+                    dpi=meta.dpi,
+                    words=meta.words,
+                    original_points=meta.original_points,
+                    is_scanned=meta.is_scanned,
+                    vlm_synthesizer=synthesizer,
+                )
+            indexer.save()
+            st.session_state["current_doc_id"] = doc_id
+            st.success(f"Indexed {len(pages_meta)} demo pages! (Doc ID: `{doc_id[:8]}`)")
+            st.rerun()
+
     uploaded_file = st.file_uploader("Upload Target PDF", type=["pdf"])
     if uploaded_file is not None:
         if st.button("🚀 Ingest & Index Document", use_container_width=True):

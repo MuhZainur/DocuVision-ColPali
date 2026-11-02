@@ -16,6 +16,7 @@ uvicorn[standard]>=0.30.0
 pydantic>=2.7.0
 streamlit>=1.35.0
 python-dotenv>=1.0.1
+google-genai>=0.1.1
 
 # Vector Retrieval & Benchmarking
 qdrant-client>=1.9.0
