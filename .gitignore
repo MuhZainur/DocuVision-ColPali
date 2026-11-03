@@ -45,6 +45,7 @@ data/uploads/
 *.jpg
 !reports/citations/*.jpg
 !reports/citations/*.png
+!assets/*
 
 # OS
 .DS_Store
