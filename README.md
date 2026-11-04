@@ -17,6 +17,8 @@ Standard enterprise RAG pipelines fail when faced with real-world business docum
 3. **Visual Grounding with Bounding Boxes:** Query attention heatmaps translate directly into pixel-level bounding boxes highlighting the exact table or chart on the PDF page.
 4. **VLM Fact Synthesis:** Multi-modal models (Qwen2-VL / PaliGemma / Claude 3.5) generate grounded answers referencing page numbers and highlighted regions.
 
+> **Encoder note:** `ColPaliEmbedder` defaults to a lightweight `surrogate` encoder for CPU demos. The real ColPali model loads through `byaldi` when you pass its model name, and the code falls back to the surrogate if it cannot load. Demo outputs therefore do not represent ColPali retrieval quality unless the real model is used.
+
 ---
 
 ## 🏗️ Architecture & Pipeline Flow
@@ -97,6 +99,6 @@ The architecture and module interactions are mapped as a queryable knowledge gra
 - [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md): 6-phase milestone implementation roadmap.
 - [VLM_LATE_INTERACTION_THEORY.md](VLM_LATE_INTERACTION_THEORY.md): Deep-dive into Late Interaction vs Dense Bi-Encoders.
 - [BENCHMARK_AND_EVALUATION.md](BENCHMARK_AND_EVALUATION.md): ViDoRe benchmark comparison and Ragas-Vision metrics.
-- [reports/VIDORE_BENCHMARK_REPORT.md](reports/VIDORE_BENCHMARK_REPORT.md): Quantitative benchmark audit (+34.2% NDCG@5 vs Text-RAG).
+- [reports/VIDORE_BENCHMARK_REPORT.md](reports/VIDORE_BENCHMARK_REPORT.md): Illustrative projection of a ViDoRe comparison, not a measured result.
 - [DECISIONS.md](DECISIONS.md): Architectural Decision Records (ADRs).
 - [TASKS.md](TASKS.md): Live task backlog and implementation tracker (10/10 Completed).

@@ -1,6 +1,8 @@
 # ViDoRe Benchmark & Architectural Evaluation Report
 ## DocuVision-ColPali vs. Traditional OCR Text-RAG Baseline
 
+> **Status: illustrative projection, not a measured result.** The figures below were not produced by running this repository on ViDoRe, and the +34.2% and +63.1% figures do not agree with each other. Do not cite them as benchmark results. A real run requires the ColPali model and the ViDoRe dataset.
+
 ---
 
 ### 1. Executive Summary
